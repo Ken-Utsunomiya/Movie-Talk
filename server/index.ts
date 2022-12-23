@@ -22,4 +22,8 @@ app.use('/graphql', graphqlHTTP({
   graphiql: true
 }))
 
+app.listen(5000, () => {
+  console.log("Listening at localhost:5000");
+})
+
 export default app
