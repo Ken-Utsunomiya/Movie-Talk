@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv'
 import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
+import './models'
 import mongoose from 'mongoose'
 
 import schema from './schema/schema'
@@ -29,5 +30,3 @@ app.listen(5000, () => {
 app.get('/', (req, res) => {
   res.send("hello world")
 })
-
-export default app
