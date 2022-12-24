@@ -21,7 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "nodemon index.js --ignore client"
+    "dev": "nodemon index.tsx --ignore client"
   },
   "eslintConfig": {
     "extends": [
