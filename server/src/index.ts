@@ -3,6 +3,7 @@ import express from 'express'
 import { graphqlHTTP } from 'express-graphql'
 import './models'
 import mongoose from 'mongoose'
+import cors from 'cors'
 
 import schema from './schema/schema'
 
@@ -18,6 +19,9 @@ mongoose.connection
 const app: express.Express = express()
 
 app.use(express.json())
+app.use(cors({
+  origin: ['http://localhost:3000']
+}))
 app.use('/graphql', graphqlHTTP({
   schema,
   graphiql: true

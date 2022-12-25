@@ -1,11 +1,11 @@
 FROM node:18.12-alpine
 
-WORKDIR '/server'
+WORKDIR '/client'
 
 COPY package.json .
 RUN yarn install
 COPY . .
 
-EXPOSE 5000
+EXPOSE 3000
 
 CMD ["yarn", "run", "dev"]

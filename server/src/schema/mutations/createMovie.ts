@@ -1,4 +1,4 @@
-import { GraphQLNonNull, GraphQLString } from 'graphql'
+import { GraphQLInt, GraphQLNonNull, GraphQLString } from 'graphql'
 import mongoose from 'mongoose'
 
 import MovieType from '../types/movie_type'
@@ -8,12 +8,11 @@ const Movie = mongoose.model('movie')
 const createMovie = {
   type: MovieType,
   args: {
-    title: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
+    id: { type: new GraphQLNonNull(GraphQLInt) },
+    title: { type: new GraphQLNonNull(GraphQLString) }
   },
-  resolve: (_: any, { title }: any) => {
-    return (new Movie({ title })).save()
+  resolve: (_: any, { id, title }: any) => {
+    return (new Movie({ id, title })).save()
   },
 }
 
