@@ -1,10 +1,16 @@
 import React from 'react'
 import { Route, Routes, HashRouter } from 'react-router-dom'
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
+
+import MovieList from './MovieList'
+
+const httpLink = createHttpLink({
+  uri: 'http://localhost:5000/graphql'
+})
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000/graphql',
-  cache: new InMemoryCache()
+  link: httpLink,
+  cache: new InMemoryCache(),
 })
 
 const App = () => {
@@ -13,7 +19,7 @@ const App = () => {
       <HashRouter>
         <div className='ui container'>
           <Routes>
-            <Route path="/" element={<div>Hello App</div>} />
+            <Route path="/" element={<MovieList />} />
           </Routes>
         </div>
       </HashRouter>
