@@ -3,6 +3,7 @@ import { Route, Routes, HashRouter } from 'react-router-dom'
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client'
 
 import MovieList from './MovieList'
+import MovieDetail from './MovieDetail'
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:5000/graphql'
@@ -20,6 +21,7 @@ const App = () => {
         <div className='ui container'>
           <Routes>
             <Route path="/" element={<MovieList />} />
+            <Route path="/movies/:movieId" element={<MovieDetail />} />
           </Routes>
         </div>
       </HashRouter>
