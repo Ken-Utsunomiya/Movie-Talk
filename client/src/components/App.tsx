@@ -21,7 +21,7 @@ const App = () => {
         <div className='ui container'>
           <Routes>
             <Route path="/" element={<MovieList />} />
-            <Route path="/movies/:movieId" element={<MovieDetail />} />
+            <Route path="/movies/:_id" element={<MovieDetail />} />
           </Routes>
         </div>
       </HashRouter>

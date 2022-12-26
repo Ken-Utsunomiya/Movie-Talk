@@ -17,10 +17,10 @@ const MovieList = () => {
 
   return (
     <div className='collection'>
-      { data.movies.map(({ movieId, title }: { movieId: number; title: string }) => {
+      { data.movies.map(({ _id, title }: { _id: number; title: string }) => {
         return (
-          <li key={movieId} className="collection-item">
-            <Link to={`movies/${movieId}`}>
+          <li key={_id} className="collection-item">
+            <Link to={`movies/${_id}`}>
               {title}
             </Link>
           </li>
