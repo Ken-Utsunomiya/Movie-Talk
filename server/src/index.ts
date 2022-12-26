@@ -30,7 +30,3 @@ app.use('/graphql', graphqlHTTP({
 app.listen(5000, () => {
   console.log("Listening at localhost:5000");
 })
-
-app.get('/', (req, res) => {
-  res.send("hello world")
-})
