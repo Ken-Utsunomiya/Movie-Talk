@@ -8,10 +8,10 @@ const Movie = mongoose.model('movie')
 const movie = {
   type: MovieType,
   args: {
-    id: { type: new GraphQLNonNull(GraphQLInt) }
+    _id: { type: new GraphQLNonNull(GraphQLInt) }
   },
-  resolve(_: any, { id }: any) {
-    return Movie.findById(id)
+  resolve(_: any, { _id }: any) {
+    return Movie.findById(_id)
   }
 }
 
