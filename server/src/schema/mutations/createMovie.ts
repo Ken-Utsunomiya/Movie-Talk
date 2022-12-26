@@ -8,11 +8,11 @@ const Movie = mongoose.model('movie')
 const createMovie = {
   type: MovieType,
   args: {
-    id: { type: new GraphQLNonNull(GraphQLInt) },
+    _id: { type: new GraphQLNonNull(GraphQLInt) },
     title: { type: new GraphQLNonNull(GraphQLString) }
   },
-  resolve: (_: any, { id, title }: any) => {
-    return (new Movie({ id, title })).save()
+  resolve: (_: any, { _id, title }: any) => {
+    return (new Movie({ _id, title })).save()
   },
 }
 
