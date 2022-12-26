@@ -5,10 +5,10 @@ import { useParams } from 'react-router-dom'
 import FETCH_MOVIE from '../queries/fetchMovie'
 
 const MovieDetail = () => {
-  const { _id } = useParams()
+  const { id } = useParams()
 
   const { data, loading, error } = useQuery(FETCH_MOVIE, {
-    variables: { _id }
+    variables: { id: Number(id) }
   })
 
   if (loading) {
