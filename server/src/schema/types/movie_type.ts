@@ -1,10 +1,19 @@
-import { GraphQLID, GraphQLObjectType, GraphQLString } from 'graphql'
+import { GraphQLID, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql'
 
-const MovieType = new GraphQLObjectType({
+import CommentType from './comment_type'
+import Movie from '../../models/movie'
+
+const MovieType: any = new GraphQLObjectType({
   name: 'MovieType',
   fields: () => ({
     id: { type: GraphQLID },
-    title: { type: GraphQLString }
+    title: { type: GraphQLString },
+    comments: {
+      type: new GraphQLList(CommentType),
+      resolve(parentValue) {
+        return Movie.findComments(parentValue.id)
+      }
+    }
   })
 })
 
