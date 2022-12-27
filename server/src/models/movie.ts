@@ -1,16 +1,8 @@
 import mongoose from 'mongoose'
 
-const Schema = mongoose.Schema
-export interface MovieDoc extends mongoose.Document {
-  _id: number
-  title: string
-  comments: any[]
-}
+import { MovieModel, MovieDoc } from '../interfaces/movie'
 
-export interface MovieModel extends mongoose.Model<MovieDoc> {
-  findComments(id: String): any[]
-  addComment(id: String, content: String): any[]
-}
+const Schema = mongoose.Schema
 
 export const MovieSchema = new Schema({
   _id: { type: Number },

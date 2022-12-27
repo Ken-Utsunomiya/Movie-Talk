@@ -1,4 +1,7 @@
 import mongoose from 'mongoose'
+
+import { CommentDoc, CommentModel } from '../interfaces/comment'
+
 const Schema = mongoose.Schema
 
 const CommentSchema = new Schema({
@@ -11,4 +14,5 @@ const CommentSchema = new Schema({
   }
 })
 
-mongoose.model('comment', CommentSchema)
+export const Comment: CommentModel = mongoose.model<CommentDoc, CommentModel>('comment', CommentSchema)
+export default Comment
