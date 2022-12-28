@@ -1,17 +1,15 @@
 import { GraphQLInt, GraphQLNonNull } from 'graphql'
-import mongoose from 'mongoose'
 
 import MovieType from '../types/movie_type'
-
-const Movie = mongoose.model('movie')
+import Movie from '../../models/movie'
 
 const movie = {
   type: MovieType,
   args: {
-    _id: { type: new GraphQLNonNull(GraphQLInt) }
+    movieId: { type: new GraphQLNonNull(GraphQLInt) }
   },
-  resolve(_: any, { _id }: any) {
-    return Movie.findById(_id)
+  resolve(_: any, { movieId }: any) {
+    return Movie.findOne({ movieId: movieId })
   }
 }
 

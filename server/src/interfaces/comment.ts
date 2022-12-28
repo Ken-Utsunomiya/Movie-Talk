@@ -1,9 +1,10 @@
 import mongoose from 'mongoose'
+import { MovieDoc } from './movie'
 
 export interface CommentDoc extends mongoose.Document {
-  _id: number
+  id: String
   title: string
-  comments: any[]
+  movie: MovieDoc
 }
 
 export interface CommentModel extends mongoose.Model<CommentDoc> {

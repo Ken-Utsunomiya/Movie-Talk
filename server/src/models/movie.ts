@@ -1,11 +1,12 @@
 import mongoose from 'mongoose'
 
 import { MovieModel, MovieDoc } from '../interfaces/movie'
+import Comment from './comment'
 
 const Schema = mongoose.Schema
 
 export const MovieSchema = new Schema({
-  _id: { type: Number },
+  movieId: { type: Number },
   title: { type: String },
   comments: [{
     type: Schema.Types.ObjectId,
@@ -13,18 +14,17 @@ export const MovieSchema = new Schema({
   }]
 })
 
-MovieSchema.static('findComments', function(id) {
+MovieSchema.static('findComments', function(id: String) {
   return this.findById(id)
     .populate('comments')
     .then((movie: any) => movie.comments)
 })
 
-MovieSchema.static('addComment', function(id, content) {
-  const Comment = mongoose.model('comment')
-
+MovieSchema.static('addCommentToMovie', function(id: String, title: String, content: String) {
   return this.findById(id)
     .then((movie: any)=> {
-      const comment = new Comment({ content, movie })
+      const createdAt = Date.now()
+      const comment = new Comment({ title, createdAt, content, movie })
       movie.comments.push(comment)
       return Promise.all([comment.save(), movie.save()])
         .then(([_, movie]) => movie)

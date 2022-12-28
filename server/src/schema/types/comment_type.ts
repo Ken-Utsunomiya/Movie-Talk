@@ -1,10 +1,9 @@
 import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql'
-import mongoose from 'mongoose'
 
 import MovieType from './movie_type'
 import formatDate from '../../utils/dateFormat'
 
-const Comment = mongoose.model('comment')
+import Comment from '../../models/comment'
 
 const CommentType = new GraphQLObjectType({
   name: 'CommentType',
@@ -21,8 +20,9 @@ const CommentType = new GraphQLObjectType({
     movie: {
       type: MovieType,
       resolve(parentValue) {
-        return Comment.findById(parentValue).populate('movie')
-          .then(comment => comment.movie)}
+        return Comment.findById(parentValue)
+          .populate('movie')
+          .then(comment => comment?.movie)}
     }
   })
 })
