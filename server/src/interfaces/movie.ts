@@ -1,12 +1,13 @@
 import mongoose from 'mongoose'
+import { CommentDoc } from './comment'
 
 export interface MovieDoc extends mongoose.Document {
   movieId: number
   title: String
-  comments: any[]
+  comments: CommentDoc[]
 }
 
 export interface MovieModel extends mongoose.Model<MovieDoc> {
-  findComments(id: String): any[]
-  addCommentToMovie(id: String, title: String, content: String): any[]
+  findComments(id: String): CommentDoc[]
+  addCommentToMovie(id: String, title: String, content: String): CommentDoc[]
 }
