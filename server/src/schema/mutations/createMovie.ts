@@ -9,7 +9,7 @@ const createMovie = {
     movieId: { type: new GraphQLNonNull(GraphQLInt) },
     title: { type: new GraphQLNonNull(GraphQLString) }
   },
-  resolve: (_: any, { movieId, title }: any) => {
+  resolve: (_: any, { movieId, title }: { movieId: Number, title: String }) => {
     return (new Movie({ movieId, title })).save()
   },
 }

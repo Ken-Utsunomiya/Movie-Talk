@@ -1,4 +1,4 @@
-import { GraphQLInt, GraphQLNonNull, GraphQLString } from 'graphql'
+import { GraphQLNonNull, GraphQLString } from 'graphql'
 
 import MovieType from '../types/movie_type'
 import Movie from '../../models/movie'
@@ -10,7 +10,7 @@ const addCommentToMovie = {
     title: { type: new GraphQLNonNull(GraphQLString) },
     content: { type: new GraphQLNonNull(GraphQLString) },
   },
-  resolve: (_: any, { id, title, content }: any) => {
+  resolve: (_: any, { id, title, content }: { id: String, title: String, content: String }) => {
     return Movie.addCommentToMovie(id, title, content)
   },
 }

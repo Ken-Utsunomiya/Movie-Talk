@@ -8,7 +8,7 @@ const movie = {
   args: {
     movieId: { type: new GraphQLNonNull(GraphQLInt) }
   },
-  resolve(_: any, { movieId }: any) {
+  resolve(_: any, { movieId }: { movieId: Number }) {
     return Movie.findOne({ movieId: movieId })
   }
 }

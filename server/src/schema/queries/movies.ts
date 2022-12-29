@@ -1,9 +1,7 @@
 import { GraphQLList } from 'graphql'
-import mongoose from 'mongoose'
 
 import MovieType from '../types/movie_type'
-
-const Movie = mongoose.model('movie')
+import Movie from '../../models/movie'
 
 const movies = {
   type: new GraphQLList(MovieType),

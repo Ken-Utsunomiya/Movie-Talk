@@ -17,12 +17,12 @@ export const MovieSchema = new Schema({
 MovieSchema.static('findComments', function(id: String) {
   return this.findById(id)
     .populate('comments')
-    .then((movie: any) => movie.comments)
+    .then((movie: MovieDoc) => movie.comments)
 })
 
 MovieSchema.static('addCommentToMovie', function(id: String, title: String, content: String) {
   return this.findById(id)
-    .then((movie: any)=> {
+    .then((movie: MovieDoc)=> {
       const createdAt = Date.now()
       const comment = new Comment({ title, createdAt, content, movie })
       movie.comments.push(comment)
