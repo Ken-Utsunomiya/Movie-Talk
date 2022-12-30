@@ -19,7 +19,14 @@ const CommentSchema = new Schema({
   }]
 })
 
+CommentSchema.static('findReplies', function(id: String) {
+  return this.findById(id)
+    .populate('replies')
+    .then((comment: CommentDoc) => comment.replies)
+})
+
 CommentSchema.static('addReplyToComment', function(id: String, content: String) {
+  console.log(content)
   return this.findById(id)
     .then((comment: CommentDoc) => {
       const createdAt = Date.now()

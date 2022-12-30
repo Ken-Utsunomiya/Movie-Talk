@@ -1,4 +1,4 @@
-import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql'
+import { GraphQLID, GraphQLList, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql'
 
 import MovieType from './movie_type'
 import formatDate from '../../utils/dateFormat'
@@ -25,11 +25,9 @@ const CommentType: any = new GraphQLObjectType({
           .then(comment => comment?.movie)}
     },
     replies: {
-      type: ReplyType,
+      type: new GraphQLList(ReplyType),
       resolve(parentValue) {
-        return Comment.findById(parentValue)
-          .populate('replies')
-          .then(comment => comment?.replies)
+        return Comment.findReplies(parentValue.id)
       }
     }
   })
