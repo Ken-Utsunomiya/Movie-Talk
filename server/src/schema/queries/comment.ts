@@ -1,16 +1,14 @@
 import { GraphQLID, GraphQLNonNull } from 'graphql'
-import mongoose from 'mongoose'
 
 import CommentType from '../types/comment_type'
-
-const Comment = mongoose.model('comment')
+import Comment from '../../models/comment'
 
 const comment = {
   type: CommentType,
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) }
   },
-  resolve(_: any, { id }: any) {
+  resolve(_: any, { id }: { id: String }) {
     return Comment.findById(id)
   }
 }
