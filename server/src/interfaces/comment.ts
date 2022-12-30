@@ -3,7 +3,7 @@ import { MovieDoc } from './movie'
 
 export interface CommentDoc extends mongoose.Document {
   id: String
-  title: string
+  title: String
   movie: MovieDoc
 }
 

@@ -1,5 +1,4 @@
 import { GraphQLID, GraphQLNonNull } from 'graphql'
-import mongoose from 'mongoose'
 
 import CommentType from '../types/comment_type'
 import Comment from '../../models/comment'
