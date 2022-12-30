@@ -26,7 +26,6 @@ CommentSchema.static('findReplies', function(id: String) {
 })
 
 CommentSchema.static('addReplyToComment', function(id: String, content: String) {
-  console.log(content)
   return this.findById(id)
     .then((comment: CommentDoc) => {
       const createdAt = Date.now()
@@ -35,6 +34,15 @@ CommentSchema.static('addReplyToComment', function(id: String, content: String) 
       comment.replies.push(reply)
       return Promise.all([reply.save(), comment.save()])
         .then(([_, comment]) => comment)
+    })
+})
+
+CommentSchema.static('editComment', function(id: String, title: String, content: String) {
+  return this.findById(id)
+    .then((comment: CommentDoc) => {
+      comment.title = title? title : comment.title
+      comment.content = content? content : comment.content
+      return comment.save()
     })
 })
 
