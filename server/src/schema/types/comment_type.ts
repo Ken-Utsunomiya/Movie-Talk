@@ -2,10 +2,10 @@ import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'gra
 
 import MovieType from './movie_type'
 import formatDate from '../../utils/dateFormat'
-
 import Comment from '../../models/comment'
+import ReplyType from './reply_type'
 
-const CommentType = new GraphQLObjectType({
+const CommentType: any = new GraphQLObjectType({
   name: 'CommentType',
   fields: () => ({
     id: { type: GraphQLID },
@@ -23,6 +23,14 @@ const CommentType = new GraphQLObjectType({
         return Comment.findById(parentValue)
           .populate('movie')
           .then(comment => comment?.movie)}
+    },
+    replies: {
+      type: ReplyType,
+      resolve(parentValue) {
+        return Comment.findById(parentValue)
+          .populate('replies')
+          .then(comment => comment?.replies)
+      }
     }
   })
 })

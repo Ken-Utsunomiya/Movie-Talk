@@ -12,7 +12,11 @@ const CommentSchema = new Schema({
   movie: {
     type: Schema.Types.ObjectId,
     ref: 'movie'
-  }
+  },
+  replies: [{
+    type: Schema.Types.ObjectId,
+    ref: 'reply'
+  }]
 })
 
 CommentSchema.static('addReplyToComment', function(id: String, content: String) {
