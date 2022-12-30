@@ -14,5 +14,15 @@ export const ReplySchema = new Schema({
   }
 })
 
+ReplySchema.static('like', function(id) {
+  return Reply.findById(id)
+    .then(reply => {
+      if (reply) {
+        ++reply.likes
+        return reply.save()
+      }
+    })
+})
+
 export const Reply: ReplyModel = mongoose.model<ReplyDoc, ReplyModel>('reply', ReplySchema)
 export default Reply
