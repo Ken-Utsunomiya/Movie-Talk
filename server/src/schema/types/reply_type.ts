@@ -9,7 +9,7 @@ const ReplyType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     content: { type: GraphQLString },
-    like: { type: GraphQLInt },
+    likes: { type: GraphQLInt },
     createdAt: {
       type: new GraphQLNonNull((GraphQLString)),
       resolve(parentValue) {

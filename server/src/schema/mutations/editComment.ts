@@ -1,4 +1,4 @@
-import { GraphQLNonNull, GraphQLString } from 'graphql'
+import { GraphQLID, GraphQLNonNull, GraphQLString } from 'graphql'
 
 import CommentType from '../types/comment_type'
 import Comment from '../../models/comment'
@@ -6,7 +6,7 @@ import Comment from '../../models/comment'
 const editComment = {
   type: CommentType,
   args: {
-    id: { type: new GraphQLNonNull(GraphQLString) },
+    id: { type: new GraphQLNonNull(GraphQLID) },
     title: { type: GraphQLString },
     content: { type: GraphQLString }
   },

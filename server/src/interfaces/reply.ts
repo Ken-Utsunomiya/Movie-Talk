@@ -8,5 +8,5 @@ export interface ReplyDoc extends mongoose.Document {
 }
 
 export interface ReplyModel extends mongoose.Model<ReplyDoc> {
-  like(): ReplyDoc
+  like(id: String): ReplyDoc
 }
