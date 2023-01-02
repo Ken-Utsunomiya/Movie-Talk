@@ -38,12 +38,7 @@ CommentSchema.static('addReplyToComment', function(id: String, content: String) 
 })
 
 CommentSchema.static('editComment', function(id: String, title: String, content: String) {
-  return this.findById(id)
-    .then((comment: CommentDoc) => {
-      comment.title = title? title : comment.title
-      comment.content = content? content : comment.content
-      return comment.save()
-    })
+  return this.findByIdAndUpdate(id, { title, content }, { new: true })
 })
 
 CommentSchema.static('deleteComment', function(id: String) {
