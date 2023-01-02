@@ -46,5 +46,9 @@ CommentSchema.static('editComment', function(id: String, title: String, content:
     })
 })
 
+CommentSchema.static('deleteComment', function(id: String) {
+  return this.findByIdAndDelete(id)
+})
+
 export const Comment: CommentModel = mongoose.model<CommentDoc, CommentModel>('comment', CommentSchema)
 export default Comment
