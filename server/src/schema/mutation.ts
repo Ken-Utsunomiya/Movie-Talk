@@ -6,6 +6,8 @@ import addReplyToComment from './mutations/addReply'
 import editComment from './mutations/editComment'
 import likeReply from './mutations/likeReply'
 import deleteComment from './mutations/deleteComment'
+import editReply from './mutations/editReply'
+import deleteReply from './mutations/deleteReply'
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -15,7 +17,9 @@ const mutation = new GraphQLObjectType({
     addReplyToComment,
     editComment,
     likeReply,
-    deleteComment
+    deleteComment,
+    editReply,
+    deleteReply
   })
 })
 
