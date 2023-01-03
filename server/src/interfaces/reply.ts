@@ -11,4 +11,5 @@ export interface ReplyDoc extends mongoose.Document {
 export interface ReplyModel extends mongoose.Model<ReplyDoc> {
   like(id: String): ReplyDoc
   editReply(id: String, content: String): ReplyDoc
+  deleteReply(id: String): ReplyDoc
 }

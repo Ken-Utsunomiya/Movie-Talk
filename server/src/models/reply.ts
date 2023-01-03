@@ -28,5 +28,9 @@ ReplySchema.static('editReply', function(id: String, content: String) {
   return this.findByIdAndUpdate(id, { content }, { new: true })
 })
 
+ReplySchema.static('deleteReply', function(id: String) {
+  return this.findByIdAndDelete(id)
+})
+
 export const Reply: ReplyModel = mongoose.model<ReplyDoc, ReplyModel>('reply', ReplySchema)
 export default Reply
