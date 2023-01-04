@@ -6,6 +6,18 @@ const FETCH_MOVIE = gql`
       id
       movieId
       title
+      comments {
+        id
+        title
+        createdAt
+        content
+        replies {
+          id
+          createdAt
+          content
+          likes
+        }
+      }
     }
   }
 `
