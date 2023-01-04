@@ -1,8 +1,10 @@
 import { gql } from '@apollo/client'
 
 const FETCH_MOVIE = gql`
-  query MovieQuery($id: Int!) {
-    movie(_id: $id) {
+  query MovieQuery($id: ID!) {
+    movie(id: $id) {
+      id
+      movieId
       title
     }
   }

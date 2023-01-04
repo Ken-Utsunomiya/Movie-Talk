@@ -8,7 +8,7 @@ const MovieDetail = () => {
   const { id } = useParams()
 
   const { data, loading, error } = useQuery(FETCH_MOVIE, {
-    variables: { id: Number(id) }
+    variables: { id: id }
   })
 
   if (loading) {
