@@ -23,7 +23,7 @@ const MovieDetail = () => {
   return (
     <div>
       {data.movie.title}
-      <CommentList comments={data.movie.comments}/>
+      <CommentList movie_id={data.movie.id}/>
     </div>
   )
 }
