@@ -4,6 +4,7 @@ const FETCH_MOVIES = gql`
   {
     movies {
       id
+      movieId
       title
     }
   }

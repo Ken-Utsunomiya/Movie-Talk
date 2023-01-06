@@ -1,4 +1,4 @@
-import { GraphQLInt, GraphQLNonNull } from 'graphql'
+import { GraphQLID, GraphQLNonNull } from 'graphql'
 
 import MovieType from '../types/movie_type'
 import Movie from '../../models/movie'
@@ -6,10 +6,10 @@ import Movie from '../../models/movie'
 const movie = {
   type: MovieType,
   args: {
-    movieId: { type: new GraphQLNonNull(GraphQLInt) }
+    id: { type: new GraphQLNonNull(GraphQLID) }
   },
-  resolve(_: any, { movieId }: { movieId: Number }) {
-    return Movie.findOne({ movieId: movieId })
+  resolve(_: any, { id }: { id: String }) {
+    return Movie.findById(id)
   }
 }
 
