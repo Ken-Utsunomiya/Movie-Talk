@@ -5,6 +5,10 @@ const FETCH_COMMENTS = gql`
     comments(movie_id: $movie_id) {
       id
       title
+      replies {
+        id
+        content
+      }
     }
   }
 `
