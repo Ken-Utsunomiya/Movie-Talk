@@ -2,9 +2,9 @@
 import { Reply } from './Reply'
 
 export interface Comment {
-  id: String
-  title: String
-  content: String
-  createdAt: String
+  id: string
+  title: string
+  content: string
+  createdAt: string
   replies: Reply[]
 }
