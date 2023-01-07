@@ -21,7 +21,7 @@ const MovieList = () => {
         return (
           <div className='collection-item' key={movieId}>
             <li>
-              <Link to={`movies/${id}`}>
+              <Link to={`${id}`}>
                 {title}
               </Link>
             </li>
