@@ -13,7 +13,8 @@ const App = () => {
       <HashRouter>
         <div className='ui container'>
           <Routes>
-            <Route path="/" element={<MovieList />} />
+            <Route path='/' element={<div>HOME</div>} />
+            <Route path="/movies" element={<MovieList />} />
             <Route path="/movies/:id" element={<MovieDetail />} />
           </Routes>
         </div>
