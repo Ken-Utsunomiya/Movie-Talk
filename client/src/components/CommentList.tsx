@@ -24,9 +24,7 @@ const CommentList = ({ movie_id }: { movie_id: string }) => {
         return (
           <div className='collection-item'>
             { comment.title }
-            <div className='collection'>
-              <ReplyList comment_id={comment.id} />
-            </div>
+            <ReplyList comment_id={comment.id} />
           </div>
         )
       })}
