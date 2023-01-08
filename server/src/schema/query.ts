@@ -5,6 +5,7 @@ import movies from './queries/movies'
 import comment from './queries/comment'
 import comments from './queries/comments'
 import reply from './queries/reply'
+import replies from './queries/replies'
 
 const query = new GraphQLObjectType({
   name: 'query',
@@ -13,7 +14,8 @@ const query = new GraphQLObjectType({
     movies,
     comment,
     comments,
-    reply
+    reply,
+    replies
   })
 })
 
