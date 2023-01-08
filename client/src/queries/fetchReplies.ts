@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 
 const FETCH_REPLIES = gql`
   query RepliesQuery($comment_id: ID!) {
-    comments(comment_id: $comment_id) {
+    replies(comment_id: $comment_id) {
       id
       createdAt
       content
