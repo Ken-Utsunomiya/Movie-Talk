@@ -18,6 +18,7 @@ ReplySchema.static('like', function(id: String) {
   return Reply.findById(id)
     .then(reply => {
       if (reply) {
+        console.log(reply)
         ++reply.likes
         return reply.save()
       }

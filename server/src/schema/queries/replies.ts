@@ -10,7 +10,7 @@ const replies = {
     comment_id: { type: new GraphQLNonNull(GraphQLID) }
   },
   resolve(_: any, { comment_id }: { comment_id: string }) {
-    return Reply.find({ movie: new mongoose.Types.ObjectId(comment_id) })
+    return Reply.find({ comment: new mongoose.Types.ObjectId(comment_id) })
   }
 }
 

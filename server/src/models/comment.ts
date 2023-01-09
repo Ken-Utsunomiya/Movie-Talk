@@ -30,7 +30,7 @@ CommentSchema.static('addReplyToComment', function(id: String, content: String) 
     .then((comment: CommentDoc) => {
       const createdAt = Date.now()
       const likes = 0
-      const reply = new Reply({ content, createdAt, likes })
+      const reply = new Reply({ content, createdAt, likes, comment })
       comment.replies.push(reply)
       return Promise.all([reply.save(), comment.save()])
         .then(([_, comment]) => comment)
