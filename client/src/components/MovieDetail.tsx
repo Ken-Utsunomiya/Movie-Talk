@@ -3,7 +3,8 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 
 import FETCH_MOVIE from '../queries/fetchMovie'
-import CommentList from './CommentList'
+import CommentList from './Comments/CommentList'
+import CommentsHeader from './Comments/CommentsHeader'
 
 const MovieDetail = () => {
   const { id } = useParams()
@@ -23,7 +24,8 @@ const MovieDetail = () => {
   return (
     <div>
       <h3>{data.movie.title}</h3>
-      <CommentList movie_id={data.movie.id}/>
+      <CommentsHeader comment_count={data.movie.comments.length}/>
+      <CommentList comments={data.movie.comments}/>
     </div>
   )
 }
