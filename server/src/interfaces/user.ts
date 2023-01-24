@@ -6,7 +6,4 @@ export interface UserDoc extends mongoose.Document {
 }
 
 export interface UserModel extends mongoose.Model<UserDoc> {
-  signup(email: string, password: string): UserDoc
-  login(email: string, password: string): UserDoc
-  logout(): UserDoc
 }

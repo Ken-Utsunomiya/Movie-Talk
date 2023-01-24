@@ -34,5 +34,5 @@ UserSchema.method('comparePassword', function comparePassword(candidatePassword,
   })
 })
 
-export const User: UserModel = mongoose.model<UserDoc, UserModel>('reply', UserSchema)
+export const User: UserModel = mongoose.model<UserDoc, UserModel>('user', UserSchema)
 export default User
