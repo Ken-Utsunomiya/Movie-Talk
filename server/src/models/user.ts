@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import mongoose from 'mongoose'
+import { UserDoc, UserModel } from '../interfaces/user'
 
 const Schema = mongoose.Schema
 
@@ -13,11 +14,11 @@ UserSchema.pre('save', function save(next) {
   if (!user.isModified('password')) {
     return next()
   }
-  bcrypt.genSalt(10, (err: mongoose.CallbackError | undefined, salt: number) => {
+  bcrypt.genSalt(10, (err, salt) => {
     if (err) {
       return next(err)
     }
-    bcrypt.hash(user.password, salt, (err: mongoose.CallbackError | undefined, hash: string) => {
+    bcrypt.hash(user.password ? user.password : "", salt, (err, hash) => {
       if (err) {
         return next(err)
       }
@@ -28,7 +29,10 @@ UserSchema.pre('save', function save(next) {
 })
 
 UserSchema.method('comparePassword', function comparePassword(candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, (err: mongoose.CallbackError, isMatch: boolean) => {
+  bcrypt.compare(candidatePassword, this.password, (err: mongoose.CallbackError | undefined, isMatch: boolean) => {
     cb(err, isMatch)
   })
 })
+
+export const User: UserModel = mongoose.model<UserDoc, UserModel>('reply', UserSchema)
+export default User
