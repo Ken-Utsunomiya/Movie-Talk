@@ -6,4 +6,5 @@ export interface UserDoc extends mongoose.Document {
 }
 
 export interface UserModel extends mongoose.Model<UserDoc> {
+  comparePassword(candidatePassword: string, cb: any): UserDoc
 }
