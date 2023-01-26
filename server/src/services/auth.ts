@@ -1,11 +1,11 @@
 import mongoose from 'mongoose'
 import passport from 'passport'
-import { LocalStrategy } from 'passport-local'
+import { Strategy } from 'passport-local'
 import { UserDoc, UserModel } from '../interfaces/user'
 
 import User from '../models/user'
 
-passport.serializeUser((user: UserDoc, done: any) => {
+passport.serializeUser((user: any, done: any) => {
   done(null, user.id)
 })
 
@@ -15,7 +15,7 @@ passport.deserializeUser((id: string, done: any) => {
   })
 })
 
-passport.use(new LocalStrategy({ usernameField: 'email' }, (email: string, password: string, done: any) => {
+passport.use(new Strategy({ usernameField: 'email' }, (email: string, password: string, done: any) => {
   User.findOne({ email: email.toLowerCase() }, (err: mongoose.CallbackError | undefined, user: UserModel) => {
     if (err) {
       return done(err)
@@ -35,7 +35,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email: string, passw
   })
 }))
 
-export const signup = ({ email, password, req }) => {
+export const signup = ({ email, password, req }: { email: string, password: string, req: any }) => {
   const user = new User({ email, password })
   if (!email || !password) {
     throw new Error('You must provide an email and password.')
@@ -50,7 +50,7 @@ export const signup = ({ email, password, req }) => {
     })
     .then(user => {
       return new Promise((resolve, reject) => {
-        req.logIn(user, (err) => {
+        req.logIn(user, (err: Error) => {
           if (err) {
             reject(err)
           }
@@ -60,9 +60,9 @@ export const signup = ({ email, password, req }) => {
     })
 }
 
-export const login = ({ email, password, req }) => {
+export const login = ({ email, password, req }: { email: string, password: string, req: any }) => {
   return new Promise((resolve, reject) => {
-    passport.authenticate('local', (err, user) => {
+    passport.authenticate('local', (err: Error, user: UserDoc) => {
       if (!user) { 
         reject(new Error('Invalid credentials.'))
       }

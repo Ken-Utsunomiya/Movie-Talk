@@ -9,7 +9,7 @@ const signup = {
     email: { type: GraphQLString },
     password: { type: GraphQLString }
   },
-  resolve(parentValue, { email, password }, req) {
+  resolve(parentValue: any, { email, password }: { email: string, password: string}, req: any) {
     return AuthService.signup({ email, password, req })
   }
 }
