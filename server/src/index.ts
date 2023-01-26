@@ -4,6 +4,9 @@ import { graphqlHTTP } from 'express-graphql'
 import './models'
 import mongoose from 'mongoose'
 import cors from 'cors'
+import session from 'express-session'
+import MongoStore from 'connect-mongo'
+import passport from 'passport'
 
 import schema from './schema/schema'
 
@@ -17,6 +20,17 @@ mongoose.connection
   .on('error', error => console.log('Error connecting to MongoDB instance:', error))
 
 const app: express.Express = express()
+
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: 'aaabbbccc',
+  store: new MongoStore({
+    mongoUrl: String(process.env.MONGO_URI)
+  })
+}))
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(express.json())
 app.use(cors({
