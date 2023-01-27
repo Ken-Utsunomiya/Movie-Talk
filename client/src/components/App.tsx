@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react'
 
+import Header from './Header'
+
 type AppProps = {
   children: ReactNode
 }
@@ -8,6 +10,7 @@ type AppProps = {
 const App = (props: AppProps) => {
   return (
     <div>
+      <Header />
       { props.children }
     </div>
   )
