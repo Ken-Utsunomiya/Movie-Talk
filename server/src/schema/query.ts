@@ -6,6 +6,7 @@ import comment from './queries/comment'
 import comments from './queries/comments'
 import reply from './queries/reply'
 import replies from './queries/replies'
+import user from './queries/user'
 
 const query = new GraphQLObjectType({
   name: 'query',
@@ -15,7 +16,8 @@ const query = new GraphQLObjectType({
     comment,
     comments,
     reply,
-    replies
+    replies,
+    user
   })
 })
 
