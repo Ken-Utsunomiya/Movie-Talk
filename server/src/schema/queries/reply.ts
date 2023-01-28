@@ -1,4 +1,4 @@
-import { GraphQLID, GraphQLNonNull, GraphQLString } from 'graphql'
+import { GraphQLID, GraphQLNonNull } from 'graphql'
 import Reply from '../../models/reply'
 
 import ReplyType from '../types/reply_type'
