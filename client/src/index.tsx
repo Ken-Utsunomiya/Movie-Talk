@@ -4,6 +4,8 @@ import reportWebVitals from './reportWebVitals'
 import { Route, Routes, HashRouter } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
 
+import 'semantic-ui-css/semantic.min.css'
+
 import App from './components/App'
 import client from './api/client'
 import MovieList from './components/MovieList'
@@ -18,7 +20,7 @@ const Root = () => {
     <ApolloProvider client={client}>
       <HashRouter>
         <Routes>
-          <Route path='/' element={<App children={<div>HOME</div>} />} />
+          <Route path='/' element={<App children={<div></div>} />} />
           <Route path='/movies' element={<App children={<MovieList />} />} />
           <Route path="/movies/:id" element={<App children={<MovieDetail />} />} />
         </Routes>
