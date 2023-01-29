@@ -1,6 +1,14 @@
 import { useMutation, useQuery } from '@apollo/client'
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
 
 import FETCH_USER from '../queries/fetchCurrentUser'
 import LOGOUT from '../mutations/logout'
@@ -25,33 +33,43 @@ const Header = () => {
     const { user } = data
     if (user) {
       return (
-        <li>
-          <a onClick={onLogoutClick} href="/#" >Logout</a>
-        </li>
+        <Button
+          color="inherit"
+          onClick={onLogoutClick}
+        >
+          Logout
+        </Button>
       )
     } else {
       return (
         <div>
-          <li>
-            <Link to="/signup">Signup</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
+          <Button color="inherit">Sign Up</Button>
+          <Button color="inherit">Login</Button>
         </div>
       )
     }
   }
 
   return (
-    <nav>
-      <div className='nav-wrapper blue'>
-        <Link to="/" className='brand-logo left'>Movie Talk</Link>
-        <ul className='right'>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Movie Talk
+          </Typography>
           { renderButtons() }
-        </ul>
-      </div>
-    </nav>
+        </Toolbar>
+      </AppBar>
+    </Box>
   )
 }
 

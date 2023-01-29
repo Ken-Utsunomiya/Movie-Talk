@@ -4,8 +4,6 @@ import reportWebVitals from './reportWebVitals'
 import { Route, Routes, HashRouter } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
 
-import 'semantic-ui-css/semantic.min.css'
-
 import App from './components/App'
 import client from './api/client'
 import MovieList from './components/MovieList'

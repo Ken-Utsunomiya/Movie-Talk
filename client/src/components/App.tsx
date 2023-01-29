@@ -1,7 +1,5 @@
 import React, { ReactNode } from 'react'
 
-import { Container } from 'semantic-ui-react'
-
 import Header from './Header'
 
 type AppProps = {
@@ -11,10 +9,10 @@ type AppProps = {
 
 const App = (props: AppProps) => {
   return (
-    <Container>
+    <div>
       <Header />
       { props.children }
-    </Container>
+    </div>
   )
 }
 
