@@ -3,9 +3,10 @@ import React, { useState } from 'react'
 
 import AuthForm from './AuthForm'
 import FETCH_USER from '../../queries/fetchCurrentUser'
+import SIGNUP from '../../mutations/signup'
 
 const SignupForm = () => {
-  const [signup] = useMutation()
+  const [signup] = useMutation(SIGNUP)
   const [errors, setErrors] = useState([])
 
   const onSubmit = ({email, password}: {email: string, password: string}) => {
@@ -20,13 +21,11 @@ const SignupForm = () => {
   }
 
   return (
-    <div className='container'>
-      <h3>Sign Up</h3>
-      <AuthForm
-        errors={errors}
-        onSubmit={onSubmit}
-      />
-    </div>
+    <AuthForm
+      isLogin={false}
+      errors={errors}
+      onSubmit={onSubmit}
+    />
   )
 }
 

@@ -8,6 +8,7 @@ import App from './components/App'
 import client from './api/client'
 import MovieList from './components/MovieList'
 import MovieDetail from './components/MovieDetail'
+import SignupForm from './components/Auth/SignupForm'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,7 +21,8 @@ const Root = () => {
         <Routes>
           <Route path='/' element={<App children={<div></div>} />} />
           <Route path='/movies' element={<App children={<MovieList />} />} />
-          <Route path="/movies/:id" element={<App children={<MovieDetail />} />} />
+          <Route path='/movies/:id' element={<App children={<MovieDetail />} />} />
+          <Route path='/signup' element={<SignupForm />} />
         </Routes>
       </HashRouter>
     </ApolloProvider>
