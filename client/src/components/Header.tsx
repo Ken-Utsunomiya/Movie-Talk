@@ -41,8 +41,8 @@ const Header = () => {
     } else {
       return (
         <div>
-          <Button color="inherit">Sign Up</Button>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" href="/#/signup">Sign Up</Button>
+          <Button color="inherit" href="/#/login">Login</Button>
         </div>
       )
     }

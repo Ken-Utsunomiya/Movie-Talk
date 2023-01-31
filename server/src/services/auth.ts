@@ -51,6 +51,8 @@ export const signup = ({ email, password, req }: { email: string, password: stri
     .then(user => {
       return new Promise((resolve, reject) => {
         req.logIn(user, (err: Error) => {
+          console.log(user)
+          console.log(err)
           if (err) {
             reject(err)
           }
