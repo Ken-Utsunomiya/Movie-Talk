@@ -8,9 +8,6 @@ import likeReply from './mutations/likeReply'
 import deleteComment from './mutations/deleteComment'
 import editReply from './mutations/editReply'
 import deleteReply from './mutations/deleteReply'
-import signup from './mutations/signup'
-import login from './mutations/login'
-import logout from './mutations/logout'
 
 const mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -22,10 +19,7 @@ const mutation = new GraphQLObjectType({
     likeReply,
     deleteComment,
     editReply,
-    deleteReply,
-    signup,
-    login,
-    logout
+    deleteReply
   })
 })
 
