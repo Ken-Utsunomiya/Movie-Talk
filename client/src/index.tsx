@@ -10,6 +10,7 @@ import MovieList from './components/MovieList'
 import MovieDetail from './components/MovieDetail'
 import SignupForm from './components/Auth/SignupForm'
 import LoginForm from './components/Auth/LoginForm'
+import Dashboard from './components/Dashboard'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -23,6 +24,7 @@ const Root = () => {
           <Route path='/' element={<App children={<div></div>} />} />
           <Route path='/movies' element={<App children={<MovieList />} />} />
           <Route path='/movies/:id' element={<App children={<MovieDetail />} />} />
+          <Route path='/dashboard' element={<App children={<Dashboard />} />} />
           <Route path='/signup' element={<SignupForm />} />
           <Route path='/login' element={<LoginForm />} />
         </Routes>

@@ -35,31 +35,25 @@ passport.use(new Strategy({ usernameField: 'email' }, (email: string, password: 
   })
 }))
 
-export const signup = ({ email, password, req }: { email: string, password: string, req: any }) => {
+export const signup = async ({ email, password, req }: { email: string, password: string, req: any }) => {
   const user = new User({ email, password })
   if (!email || !password) {
     throw new Error('You must provide an email and password.')
   }
 
-  return User.findOne({ email })
-    .then(existingUser => {
-      if (existingUser) { 
-        throw new Error('Email in use')
+  const existingUser = await User.findOne({ email })
+  if (existingUser) {
+    throw new Error('Email in use')
+  }
+  const user_1 = await user.save()
+  return await new Promise((resolve, reject) => {
+    req.logIn(user_1, (err: Error) => {
+      if (err) {
+        reject(err)
       }
-      return user.save()
+      resolve(user_1)
     })
-    .then(user => {
-      return new Promise((resolve, reject) => {
-        req.logIn(user, (err: Error) => {
-          console.log(user)
-          console.log(err)
-          if (err) {
-            reject(err)
-          }
-          resolve(user)
-        })
-      })
-    })
+  })
 }
 
 export const login = ({ email, password, req }: { email: string, password: string, req: any }) => {
@@ -68,7 +62,9 @@ export const login = ({ email, password, req }: { email: string, password: strin
       if (!user) { 
         reject(new Error('Invalid credentials.'))
       }
-      req.login(user, () => resolve(user))
+      req.login(user, () => {
+        resolve(user)
+      })
     })({ body: { email, password } })
   })
 }
