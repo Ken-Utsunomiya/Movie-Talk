@@ -1,16 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import reportWebVitals from './reportWebVitals'
-import { Route, Routes, HashRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
 
 import App from './components/App'
 import client from './api/client'
-import MovieList from './components/MovieList'
-import MovieDetail from './components/MovieDetail'
-import SignupForm from './components/Auth/SignupForm'
-import LoginForm from './components/Auth/LoginForm'
-import Dashboard from './components/Dashboard'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -18,18 +13,11 @@ const root = ReactDOM.createRoot(
 
 const Root = () => {
   return (
-    <ApolloProvider client={client}>
-      <HashRouter>
-        <Routes>
-          <Route path='/' element={<App children={<div></div>} />} />
-          <Route path='/movies' element={<App children={<MovieList />} />} />
-          <Route path='/movies/:id' element={<App children={<MovieDetail />} />} />
-          <Route path='/dashboard' element={<App children={<Dashboard />} />} />
-          <Route path='/signup' element={<SignupForm />} />
-          <Route path='/login' element={<LoginForm />} />
-        </Routes>
-      </HashRouter>
-    </ApolloProvider>
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </BrowserRouter>
   )
 }
 

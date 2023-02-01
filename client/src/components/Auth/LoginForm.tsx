@@ -20,7 +20,7 @@ const LoginForm = () => {
     .catch((res) => {
       setErrors(res.graphQLErrors.map(({ message }: { message: string }) => message))
     })
-    .then(() => navigate('/#/dashboard'))
+    .then(() => navigate('/dashboard'))
   }
 
   return (
