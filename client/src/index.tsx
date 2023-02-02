@@ -1,10 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import reportWebVitals from './reportWebVitals'
-import { BrowserRouter } from 'react-router-dom'
 import { ApolloProvider } from '@apollo/client'
 
 import App from './components/App'
+import Dashboard from './components/Dashboard'
+import MovieDetail from './components/MovieDetail'
+import MovieList from './components/MovieList'
+import SignupForm from './components/Auth/SignupForm'
+import LoginForm from './components/Auth/LoginForm'
 import client from './api/client'
 
 const root = ReactDOM.createRoot(
@@ -13,17 +18,26 @@ const root = ReactDOM.createRoot(
 
 const Root = () => {
   return (
-    <BrowserRouter>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
-    </BrowserRouter>
+    <div>
+      <Routes>
+        <Route path='/' element={<App children={<div />} />} />
+        <Route path='/movies' element={<App children={<MovieList />} />} />
+        <Route path='/movies/:id' element={<App children={<MovieDetail />} />} />
+        <Route path='/dashboard' element={<App children={<Dashboard />} />} />
+        <Route path='/signup' element={<SignupForm />} />
+        <Route path='/login' element={<LoginForm />} />
+      </Routes>
+    </div>
   )
 }
 
 root.render(
   <React.StrictMode>
-    <Root />
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <Root />
+      </ApolloProvider>
+    </BrowserRouter>
   </React.StrictMode>
 )
 
