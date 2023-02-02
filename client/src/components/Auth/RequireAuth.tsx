@@ -1,18 +1,19 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useQuery } from '@apollo/client'
+import { onAuthStateChanged } from 'firebase/auth'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import FETCH_USER from '../../queries/fetchCurrentUser'
+import auth from '../../auth/firebase'
 
 const RequireAuth = (BaseComponent: () => JSX.Element) => () => {
-  const { data, loading } = useQuery(FETCH_USER)
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!loading && !data?.user) {
-      navigate('/login')
-    }
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigate('/login')
+      }
+    })
   })
 
   return <BaseComponent />

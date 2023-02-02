@@ -1,32 +1,22 @@
-import { useMutation } from '@apollo/client'
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 import AuthForm from './AuthForm'
-import FETCH_USER from '../../queries/fetchCurrentUser'
-import SIGNUP from '../../mutations/signup'
+import auth from '../../auth/firebase'
 
 const SignupForm = () => {
-  const [signup] = useMutation(SIGNUP)
-  const [errors, setErrors] = useState([])
   const navigate = useNavigate()
 
   const onSubmit = ({email, password}: {email: string, password: string}) => {
-    signup({
-      variables: { email, password },
-      refetchQueries: [{ query: FETCH_USER }],
-      awaitRefetchQueries: true
-    })
-    .catch((res) => {
-      setErrors(res.graphQLErrors.map(({ message }: { message: string }) => message))
-    })
-    .then(() => navigate('/'))
+    createUserWithEmailAndPassword(auth, email, password)
+    .then(() => navigate('/dashboard'))
+    .catch(err => alert(err))
   }
 
   return (
     <AuthForm
       isLogin={false}
-      errors={errors}
       onSubmit={onSubmit}
     />
   )

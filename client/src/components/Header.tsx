@@ -1,35 +1,38 @@
-import { useMutation, useQuery } from '@apollo/client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { onAuthStateChanged, signOut, User } from 'firebase/auth'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 
-import FETCH_USER from '../queries/fetchCurrentUser'
-import LOGOUT from '../mutations/logout'
+import auth from '../auth/firebase'
+import IUser from '../interfaces/User'
 
 const Header = () => {
-  const { data, loading, error } = useQuery(FETCH_USER)
-  const [logout] = useMutation(LOGOUT)
+  const [user, setUser] = useState<IUser>({uid: "", email: ""})
   const navigate = useNavigate()
 
-  const onLogoutClick = () => {
-    logout({
-      refetchQueries: [{ query: FETCH_USER }],
-      awaitRefetchQueries: true
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email } = user
+        setUser({ uid, email })
+      } else {
+        setUser({ uid: "", email: "" })
+      }
     })
+  })
+
+  const onLogoutClick = () => {
+    signOut(auth)
     .then(() => navigate('/'))
+    .catch(err => alert(err))
   }
 
   const renderButtons = () => {
-    if (loading) { return <div /> }
-    if (error) { return <p>ERROR: {error.message}</p> }
-
-    const { user } = data
-    if (user) {
+    if (user.uid) {
       return (
         <Button
           color="inherit"

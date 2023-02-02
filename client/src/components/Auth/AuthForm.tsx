@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -13,7 +14,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 type AuthFormProps = {
   isLogin: boolean,
-  errors: never[],
   onSubmit: ({email, password}: {email: string, password: string}) => void
 }
 
