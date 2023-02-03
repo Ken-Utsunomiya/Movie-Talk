@@ -10,7 +10,7 @@ const SignupForm = () => {
 
   const onSubmit = ({email, password}: {email: string, password: string}) => {
     createUserWithEmailAndPassword(auth, email, password)
-    .then(() => navigate('/dashboard'))
+    .then(() => navigate('/movies'))
     .catch(err => alert(err))
   }
 

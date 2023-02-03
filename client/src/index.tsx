@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals'
 import { ApolloProvider } from '@apollo/client'
 
 import App from './components/App'
+import Home from './components/Home'
 import Dashboard from './components/Dashboard'
 import MovieDetail from './components/MovieDetail'
 import MovieList from './components/MovieList'
@@ -20,7 +21,7 @@ const Root = () => {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<App children={<div />} />} />
+        <Route path='/' element={<App children={<Home />} />} />
         <Route path='/movies' element={<App children={<MovieList />} />} />
         <Route path='/movies/:id' element={<App children={<MovieDetail />} />} />
         <Route path='/dashboard' element={<App children={<Dashboard />} />} />

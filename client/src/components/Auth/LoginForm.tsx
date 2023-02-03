@@ -10,7 +10,7 @@ const LoginForm = () => {
 
   const onSubmit = ({email, password}: {email: string, password: string}) => {
     signInWithEmailAndPassword(auth, email, password)
-    .then(() => navigate('/dashboard'))
+    .then(() => navigate('/movies'))
     .catch(err => alert(err))
   }
 
