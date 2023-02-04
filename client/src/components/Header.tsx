@@ -23,7 +23,7 @@ const Header = () => {
         setUser({ uid: "", email: "" })
       }
     })
-  })
+  }, [])
 
   const onLogoutClick = () => {
     signOut(auth)
