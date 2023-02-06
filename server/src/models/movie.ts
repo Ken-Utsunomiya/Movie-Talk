@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 
 import { MovieModel, MovieDoc } from '../interfaces/movie'
 import Comment from './comment'
+import Review from './review'
 
 const Schema = mongoose.Schema
 
@@ -11,6 +12,10 @@ export const MovieSchema = new Schema({
   comments: [{
     type: Schema.Types.ObjectId,
     ref: 'comment'
+  }],
+  reviews: [{
+    type: Schema.Types.ObjectId,
+    ref: 'review'
   }]
 })
 
@@ -27,6 +32,17 @@ MovieSchema.static('addCommentToMovie', function(id: String, title: String, cont
       const comment = new Comment({ title, createdAt, content, movie })
       movie.comments.push(comment)
       return Promise.all([comment.save(), movie.save()])
+        .then(([_, movie]) => movie)
+    })
+})
+
+MovieSchema.static('addReviewToMovie', function(id: String, title: String, content: String) {
+  return this.findById(id)
+    .then((movie: MovieDoc)=> {
+      const createdAt = Date.now()
+      const review = new Review({ title, createdAt, content, movie })
+      movie.reviews.push(review)
+      return Promise.all([review.save(), movie.save()])
         .then(([_, movie]) => movie)
     })
 })
