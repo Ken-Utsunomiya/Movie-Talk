@@ -3,7 +3,7 @@ import { GraphQLID, GraphQLNonNull } from 'graphql'
 import ReviewType from '../types/review_type'
 import Review from '../../models/review'
 
-const comment = {
+const review = {
   type: ReviewType,
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) }
@@ -13,4 +13,4 @@ const comment = {
   }
 }
 
-export default comment
+export default review
