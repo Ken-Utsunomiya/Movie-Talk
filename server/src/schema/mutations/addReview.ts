@@ -1,10 +1,10 @@
 import { GraphQLID, GraphQLNonNull, GraphQLString } from 'graphql'
 
 import Movie from '../../models/movie'
-import ReviewType from '../types/review_type'
+import MovieType from '../types/movie_type'
 
 const addReviewToMovie = {
-  type: ReviewType,
+  type: MovieType,
   args: {
     id: { type: new GraphQLNonNull(GraphQLID)},
     title: { type: new GraphQLNonNull(GraphQLString)},
