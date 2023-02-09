@@ -25,6 +25,12 @@ MovieSchema.static('findComments', function(id: String) {
     .then((movie: MovieDoc) => movie.comments)
 })
 
+MovieSchema.static('findReviews', function(id: String) {
+  return this.findById(id)
+    .populate('reviews')
+    .then((movie: MovieDoc) => movie.reviews)
+})
+
 MovieSchema.static('addCommentToMovie', function(id: String, title: String, content: String) {
   return this.findById(id)
     .then((movie: MovieDoc)=> {
@@ -36,11 +42,11 @@ MovieSchema.static('addCommentToMovie', function(id: String, title: String, cont
     })
 })
 
-MovieSchema.static('addReviewToMovie', function(id: String, title: String, content: String) {
+MovieSchema.static('addReviewToMovie', function(id: String, title: String, uid: String, content: String) {
   return this.findById(id)
     .then((movie: MovieDoc)=> {
       const createdAt = Date.now()
-      const review = new Review({ title, createdAt, content, movie })
+      const review = new Review({ title, createdAt, uid, content, movie })
       movie.reviews.push(review)
       return Promise.all([review.save(), movie.save()])
         .then(([_, movie]) => movie)

@@ -9,6 +9,7 @@ const ReviewType: any = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     title: { type: GraphQLString },
+    uid: { type: GraphQLString },
     content: { type: GraphQLString },
     createdAt: {
       type: new GraphQLNonNull(GraphQLString),
