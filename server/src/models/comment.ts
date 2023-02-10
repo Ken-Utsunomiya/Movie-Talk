@@ -25,12 +25,12 @@ CommentSchema.static('findReplies', function(id: String) {
     .then((comment: CommentDoc) => comment.replies)
 })
 
-CommentSchema.static('addReplyToComment', function(id: String, content: String) {
+CommentSchema.static('addReplyToComment', function(id: String, uid: String, content: String) {
   return this.findById(id)
     .then((comment: CommentDoc) => {
       const createdAt = Date.now()
       const likes = 0
-      const reply = new Reply({ content, createdAt, likes, comment })
+      const reply = new Reply({ uid, content, createdAt, likes, comment })
       comment.replies.push(reply)
       return Promise.all([reply.save(), comment.save()])
         .then(([_, comment]) => comment)

@@ -5,6 +5,7 @@ import { ReplyDoc, ReplyModel } from '../interfaces/reply'
 const Schema = mongoose.Schema
 
 export const ReplySchema = new Schema({
+  uid: { type: String },
   createdAt: { type: Date },
   content: { type: String },
   likes: { type: Number, default: 0 },

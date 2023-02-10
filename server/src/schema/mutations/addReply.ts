@@ -7,10 +7,11 @@ const addReplyToComment = {
   type: CommentType,
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },
+    uid: { type: new GraphQLNonNull(GraphQLString) },
     content: { type: new GraphQLNonNull(GraphQLString) },
   },
-  resolve: (_: any, { id, content }: { id: String, content: String }) => {
-    return Comment.addReplyToComment(id, content)
+  resolve: (_: any, { id, uid, content }: { id: String, uid: String, content: String }) => {
+    return Comment.addReplyToComment(id, uid, content)
   },
 }
 

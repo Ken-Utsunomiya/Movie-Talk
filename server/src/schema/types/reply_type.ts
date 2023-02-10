@@ -8,6 +8,7 @@ const ReplyType = new GraphQLObjectType({
   name: 'ReplyType',
   fields: () => ({
     id: { type: GraphQLID },
+    uid: { type: GraphQLString },
     content: { type: GraphQLString },
     likes: { type: GraphQLInt },
     createdAt: {

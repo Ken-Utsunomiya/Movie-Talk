@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import { CommentDoc } from './comment'
 
 export interface ReplyDoc extends mongoose.Document {
+  uid: String
   content: String
   likes: number
   comment: CommentDoc
