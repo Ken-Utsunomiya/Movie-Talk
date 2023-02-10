@@ -9,11 +9,13 @@ const FETCH_MOVIE = gql`
       comments {
         id
         title
+        uid
         createdAt
         content
         replies {
           id
           createdAt
+          uid
           content
           likes
         }
