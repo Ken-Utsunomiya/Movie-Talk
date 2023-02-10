@@ -31,11 +31,11 @@ MovieSchema.static('findReviews', function(id: String) {
     .then((movie: MovieDoc) => movie.reviews)
 })
 
-MovieSchema.static('addCommentToMovie', function(id: String, title: String, content: String) {
+MovieSchema.static('addCommentToMovie', function(id: String, title: String, uid: String, content: String) {
   return this.findById(id)
     .then((movie: MovieDoc)=> {
       const createdAt = Date.now()
-      const comment = new Comment({ title, createdAt, content, movie })
+      const comment = new Comment({ uid, title, createdAt, content, movie })
       movie.comments.push(comment)
       return Promise.all([comment.save(), movie.save()])
         .then(([_, movie]) => movie)

@@ -6,6 +6,7 @@ import Reply from './reply'
 const Schema = mongoose.Schema
 
 const CommentSchema = new Schema({
+  uid: { type: String },
   title: { type: String },
   createdAt: { type: Date },
   content: { type: String },

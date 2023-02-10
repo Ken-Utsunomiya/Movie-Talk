@@ -10,8 +10,8 @@ const addCommentToMovie = {
     title: { type: new GraphQLNonNull(GraphQLString) },
     content: { type: new GraphQLNonNull(GraphQLString) },
   },
-  resolve: (_: any, { id, title, content }: { id: String, title: String, content: String }) => {
-    return Movie.addCommentToMovie(id, title, content)
+  resolve: (_: any, { id, title, uid, content }: { id: String, title: String, uid: String, content: String }) => {
+    return Movie.addCommentToMovie(id, title, uid, content)
   },
 }
 

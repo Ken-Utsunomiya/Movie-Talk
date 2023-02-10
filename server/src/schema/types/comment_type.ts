@@ -9,6 +9,7 @@ const CommentType: any = new GraphQLObjectType({
   name: 'CommentType',
   fields: () => ({
     id: { type: GraphQLID },
+    uid: { type: GraphQLString },
     title: { type: GraphQLString },
     content: { type: GraphQLString },
     createdAt: {
