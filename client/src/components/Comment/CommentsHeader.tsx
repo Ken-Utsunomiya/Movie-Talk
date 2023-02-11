@@ -8,10 +8,10 @@ const CommentsHeader = ({ comment_count }: { comment_count: number }) => {
     <div>
       <h4>{ comment_count } Comments</h4>
       <TextField
-        id="standard-basic"
+        id="comment-input-field"
         label="Add a comment ..."
         variant="standard"
-        sx={{ display: "flex", maxWidth: 700 }}
+        sx={{ display: "flex" }}
         margin="normal"
         multiline
         onChange={e => setComment(e.target.value)}
