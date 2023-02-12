@@ -1,22 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { TextField } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 
 const CommentsHeader = ({ comment_count }: { comment_count: number }) => {
-  const [comment, setComment] = useState("")
+  const navigate = useNavigate()
+
   return (
-    <div>
-      <h4>{ comment_count } Comments</h4>
-      <TextField
-        id="comment-input-field"
-        label="Add a comment ..."
-        variant="standard"
-        sx={{ display: "flex" }}
-        margin="normal"
-        multiline
-        onChange={e => setComment(e.target.value)}
-      />
-    </div>
+    <Box>
+      <Typography component="h6" variant="h6">
+        { comment_count } Comments
+      </Typography>
+      <Link 
+        component="button" 
+        underline="none"
+        variant="body1"
+        onClick={() => navigate('comments/new')}
+      >
+        Add a Comment
+      </Link>
+    </Box>
   )
 }
 
