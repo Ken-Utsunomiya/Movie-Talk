@@ -1,25 +1,28 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Box, Link, Typography } from '@mui/material'
+import { Grid, Button, Typography } from '@mui/material'
 
 const CommentsHeader = ({ comment_count }: { comment_count: number }) => {
   const navigate = useNavigate()
 
   return (
-    <Box>
+    <Grid
+      container
+      direction="row"
+      justifyContent="space-between"
+      alignItems="flex-start"
+    >
       <Typography component="h6" variant="h6">
         { comment_count } Comments
       </Typography>
-      <Link 
-        component="button" 
-        underline="none"
-        variant="body1"
+      <Button
+        variant="contained"
         onClick={() => navigate('comments/new')}
       >
         Add a Comment
-      </Link>
-    </Box>
+      </Button>
+    </Grid>
   )
 }
 
