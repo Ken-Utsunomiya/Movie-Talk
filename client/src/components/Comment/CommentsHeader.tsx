@@ -20,7 +20,7 @@ const CommentsHeader = ({ comment_count }: { comment_count: number }) => {
         variant="contained"
         onClick={() => navigate('comments/new')}
       >
-        Add a Comment
+        Add Comment
       </Button>
     </Grid>
   )

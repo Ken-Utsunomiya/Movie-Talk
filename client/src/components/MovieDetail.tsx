@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client'
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import { Box, Grid } from '@mui/material'
 
 import FETCH_MOVIE from '../queries/fetchMovie'
 import CommentList from './Comment/CommentList'
@@ -23,9 +24,22 @@ const MovieDetail = () => {
 
   return (
     <div>
-      <h3>{data.movie.title}</h3>
-      <CommentsHeader comment_count={data.movie.comments.length}/>
-      <CommentList comments={data.movie.comments}/>
+      <Grid container spacing={10}>
+        <Grid item xs={9}>
+          <Box>
+            <h3>{data.movie.title}</h3>
+            <CommentsHeader comment_count={data.movie.comments.length}/>
+            <CommentList comments={data.movie.comments}/>
+          </Box>
+        </Grid>
+        <Grid item xs={3}>
+          <Box>
+            <h3>{data.movie.title}</h3>
+            <CommentsHeader comment_count={data.movie.comments.length}/>
+            <CommentList comments={data.movie.comments}/>
+          </Box>
+        </Grid>
+      </Grid>
     </div>
   )
 }
