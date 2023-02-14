@@ -8,6 +8,7 @@ const addCommentToMovie = {
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },
     title: { type: new GraphQLNonNull(GraphQLString) },
+    uid: { type: new GraphQLNonNull(GraphQLString) },
     content: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve: (_: any, { id, title, uid, content }: { id: String, title: String, uid: String, content: String }) => {
