@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client'
 import { useNavigate, useParams } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 
-import ADD_COMMENT from '../../mutations/addComment'
+import ADD_COMMENT from '../../queries/addComment'
 import RequireAuth from '../Auth/RequireAuth'
 import auth from '../../auth/firebase'
 import { Box, Button, Container, TextField } from '@mui/material'
@@ -13,7 +13,7 @@ const CommentCreate = () => {
   const [uid, setUid] = useState("")
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
-  const [addComment, { error }] = useMutation(ADD_COMMENT)
+  const [addCommentToMovie, { error }] = useMutation(ADD_COMMENT)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const CommentCreate = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    addComment({
+    addCommentToMovie({
       variables: {
         id,
         title,
@@ -34,7 +34,8 @@ const CommentCreate = () => {
         content
       }
     })
-    navigate(`/movies/${id}`)
+    .then(() => navigate(`/movies/${id}`))
+    .catch((err) => alert(err.message))
   }
 
   return (
@@ -71,7 +72,6 @@ const CommentCreate = () => {
             label="Content"
             name="content"
             multiline
-            maxRows={10}
             rows={20}
             onChange={e => setContent(e.target.value)}
           />
