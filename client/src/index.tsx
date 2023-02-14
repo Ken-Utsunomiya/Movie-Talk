@@ -11,6 +11,7 @@ import MovieDetail from './components/MovieDetail'
 import MovieList from './components/MovieList'
 import SignupForm from './components/Auth/SignupForm'
 import LoginForm from './components/Auth/LoginForm'
+import CommentCreate from './components/Comment/CommentCreate'
 import client from './api/client'
 
 const root = ReactDOM.createRoot(
@@ -24,6 +25,7 @@ const Root = () => {
         <Route path='/' element={<App children={<Home />} />} />
         <Route path='/movies' element={<App children={<MovieList />} />} />
         <Route path='/movies/:id' element={<App children={<MovieDetail />} />} />
+        <Route path='/movies/:id/comments/new' element={<App children={<CommentCreate />} />} />
         <Route path='/dashboard' element={<App children={<Dashboard />} />} />
         <Route path='/signup' element={<SignupForm />} />
         <Route path='/login' element={<LoginForm />} />
