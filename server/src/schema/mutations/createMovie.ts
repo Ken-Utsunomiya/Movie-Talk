@@ -10,7 +10,8 @@ const createMovie = {
     title: { type: new GraphQLNonNull(GraphQLString) }
   },
   resolve: (_: any, { movieId, title }: { movieId: Number, title: String }) => {
-    return (new Movie({ movieId, title })).save()
+    const commentCount = 0
+    return (new Movie({ movieId, title, commentCount })).save()
   },
 }
 

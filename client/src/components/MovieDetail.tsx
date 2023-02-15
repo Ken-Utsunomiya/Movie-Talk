@@ -11,7 +11,7 @@ const MovieDetail = () => {
   const { id } = useParams()
 
   const { data, loading, error } = useQuery(FETCH_MOVIE, {
-    variables: { id: id }
+    variables: { id }
   })
 
   if (loading) {
@@ -28,14 +28,14 @@ const MovieDetail = () => {
         <Grid item xs={9}>
           <Box>
             <h3>{data.movie.title}</h3>
-            <CommentsHeader comment_count={data.movie.comments.length}/>
+            <CommentsHeader comment_count={data.movie.commentCount}/>
             <CommentList comments={data.movie.comments}/>
           </Box>
         </Grid>
         <Grid item xs={3}>
           <Box>
             <h3>{data.movie.title}</h3>
-            <CommentsHeader comment_count={data.movie.comments.length}/>
+            <CommentsHeader comment_count={data.movie.commentCount}/>
             <CommentList comments={data.movie.comments}/>
           </Box>
         </Grid>
