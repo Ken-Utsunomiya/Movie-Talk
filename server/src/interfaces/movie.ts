@@ -6,6 +6,7 @@ import { ReviewDoc } from './review'
 export interface MovieDoc extends mongoose.Document {
   movieId: number
   title: String
+  commentCount: number
   comments: CommentDoc[]
   reviews: ReviewDoc[]
 }

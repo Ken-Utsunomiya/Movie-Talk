@@ -10,6 +10,7 @@ const MovieType: any = new GraphQLObjectType({
     id: { type: GraphQLID },
     movieId: { type: GraphQLInt },
     title: { type: GraphQLString },
+    commentCount: { type: GraphQLInt },
     comments: {
       type: new GraphQLList(CommentType),
       resolve(parentValue) {
