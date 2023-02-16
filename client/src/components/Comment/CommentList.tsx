@@ -47,7 +47,10 @@ const CommentList = ({ comments }: { comments: Comment[] }) => {
             <ListItemIcon>
               <FaceIcon />
             </ListItemIcon>
-            <ListItemText primary={ comment.title } />
+            <ListItemText 
+              primary={ comment.title } 
+              secondary={ comment.createdAt }
+            />
             { uid === comment.uid ? 
               <IconButton
                 edge="end"
