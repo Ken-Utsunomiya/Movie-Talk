@@ -7,6 +7,7 @@ import ADD_COMMENT from '../../queries/addComment'
 import RequireAuth from '../Auth/RequireAuth'
 import auth from '../../auth/firebase'
 import { Box, Button, Container, TextField } from '@mui/material'
+import FETCH_MOVIE from '../../queries/fetchMovie'
 
 const CommentCreate = () => {
   const { id } = useParams()
@@ -32,7 +33,11 @@ const CommentCreate = () => {
         title,
         uid,
         content
-      }
+      },
+      refetchQueries: [{
+        query: FETCH_MOVIE,
+        variables: { id }
+      }]
     })
     .then(() => navigate(`/movies/${id}`))
     .catch((err) => alert(err.message))
@@ -78,7 +83,7 @@ const CommentCreate = () => {
           <Button
             type="submit"
             variant="contained"
-            sx={{ mt: 7, mb: 2, width: '50%',  }}
+            sx={{ mt: 7, mb: 2, width: '50%' }}
           >
             Submit
           </Button>
