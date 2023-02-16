@@ -2,7 +2,9 @@ import { gql } from '@apollo/client'
 
 const DELETE_COMMENT = gql`
   mutation DeleteComment($id: ID!) {
-    id
+    deleteComment(id: $id) {
+      id
+    }
   }
 `
 
