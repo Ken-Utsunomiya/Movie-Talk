@@ -9,7 +9,6 @@ const Schema = mongoose.Schema
 export const MovieSchema = new Schema({
   movieId: { type: Number },
   title: { type: String },
-  commentCount: { type: Number },
   comments: [{
     type: Schema.Types.ObjectId,
     ref: 'comment'
@@ -38,7 +37,6 @@ MovieSchema.static('addCommentToMovie', function(id: String, title: String, uid:
       const createdAt = Date.now()
       const comment = new Comment({ uid, title, createdAt, content, movie })
       movie.comments.push(comment)
-      movie.commentCount += 1
       return Promise.all([comment.save(), movie.save()])
         .then(([_, movie]) => movie)
     })

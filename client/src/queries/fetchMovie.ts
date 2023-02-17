@@ -6,20 +6,11 @@ const FETCH_MOVIE = gql`
       id
       movieId
       title
-      commentCount
       comments {
         id
         title
         uid
         createdAt
-        content
-        replies {
-          id
-          createdAt
-          uid
-          content
-          likes
-        }
       }
     }
   }
