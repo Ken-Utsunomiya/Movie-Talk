@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Grid, Button, Typography } from '@mui/material'
 
-const CommentsHeader = ({ comment_count }: { comment_count: number }) => {
+const CommentsHeader = ({ commentCount }: { commentCount: number }) => {
   const navigate = useNavigate()
 
   return (
@@ -14,7 +14,7 @@ const CommentsHeader = ({ comment_count }: { comment_count: number }) => {
       alignItems="flex-start"
     >
       <Typography component="h6" variant="h6">
-        { comment_count } Comments
+        { commentCount } Comments
       </Typography>
       <Button
         variant="contained"

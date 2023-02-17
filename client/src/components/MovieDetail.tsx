@@ -28,14 +28,14 @@ const MovieDetail = () => {
         <Grid item xs={9}>
           <Box>
             <h3>{data.movie.title}</h3>
-            <CommentsHeader comment_count={data.movie.commentCount}/>
+            <CommentsHeader commentCount={data.movie.commentCount}/>
             <CommentList comments={data.movie.comments}/>
           </Box>
         </Grid>
         <Grid item xs={3}>
           <Box>
             <h3>{data.movie.title}</h3>
-            <CommentsHeader comment_count={data.movie.commentCount}/>
+            <CommentsHeader commentCount={data.movie.commentCount}/>
             <CommentList comments={data.movie.comments}/>
           </Box>
         </Grid>

@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { useMutation } from '@apollo/client'
-import { useParams } from 'react-router-dom'
-import List from '@mui/material/List'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemText from '@mui/material/ListItemText'
-import ListItemIcon from '@mui/material/ListItemIcon'
+import { useNavigate, useParams } from 'react-router-dom'
+import { List, ListItemButton, ListItemText, ListItemIcon, IconButton } from '@mui/material'
 import FaceIcon from '@mui/icons-material/Face'
-import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
 
 import { Comment } from '../../interfaces/Comment'
@@ -19,6 +15,7 @@ const CommentList = ({ comments }: { comments: Comment[] }) => {
   const { id } = useParams()
   const [uid, setUid] = useState("")
   const [deleteComment, { error }] = useMutation(DELETE_COMMENT)
+  const navigate = useNavigate()
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -43,7 +40,8 @@ const CommentList = ({ comments }: { comments: Comment[] }) => {
     <List>
       { comments.map((comment: Comment) => {
         return (
-          <ListItemButton>
+          <ListItemButton
+            onClick={() => navigate(`comments/${comment.id}`)}>
             <ListItemIcon>
               <FaceIcon />
             </ListItemIcon>
@@ -57,8 +55,7 @@ const CommentList = ({ comments }: { comments: Comment[] }) => {
                 aria-label="delete"
                 onClick={() => onCommentDelete(comment.id)}>
                 <DeleteIcon />
-              </IconButton> :
-              <div />
+              </IconButton> : <div />
             }
           </ListItemButton>
         )
