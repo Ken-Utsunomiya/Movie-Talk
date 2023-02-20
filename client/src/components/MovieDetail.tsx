@@ -24,22 +24,23 @@ const MovieDetail = () => {
 
   return (
     <div>
-      <Grid container spacing={10}>
-        <Grid item xs={9}>
-          <Box>
-            <h3>{data.movie.title}</h3>
-            <CommentsHeader commentCount={data.movie.comments.length}/>
-            <CommentList comments={data.movie.comments}/>
-          </Box>
+      <h3>{data.movie.title}</h3>
+      <Box>
+        <Grid container spacing={10}>
+          <Grid item xs={9}>
+            <Box>
+              <CommentsHeader commentCount={data.movie.comments.length}/>
+              <CommentList comments={data.movie.comments}/>
+            </Box>
+          </Grid>
+          <Grid item xs={3}>
+            <Box>
+              <CommentsHeader commentCount={data.movie.comments.length}/>
+              <CommentList comments={data.movie.comments}/>
+            </Box>
+          </Grid>
         </Grid>
-        <Grid item xs={3}>
-          <Box>
-            <h3>{data.movie.title}</h3>
-            <CommentsHeader commentCount={data.movie.comments.length}/>
-            <CommentList comments={data.movie.comments}/>
-          </Box>
-        </Grid>
-      </Grid>
+      </Box>
     </div>
   )
 }
