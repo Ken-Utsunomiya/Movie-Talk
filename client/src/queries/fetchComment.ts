@@ -8,6 +8,9 @@ const FETCH_COMMENT = gql`
       uid
       createdAt
       content
+      replies {
+        id
+      }
     }
   }
 `

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Grid, Paper, Typography, styled, Box } from '@mui/material'
+import { Grid, Paper, Typography, Box } from '@mui/material'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Reply } from '../../interfaces/Reply'
@@ -52,13 +52,13 @@ const CommentDetail = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid container>
+        {/* <Grid container>
           { data.comment.replies.map((reply: Reply) => {
             return (
               <h3>{ reply.content }</h3>
             )
           })}
-        </Grid>
+        </Grid> */}
       </Paper>
     </Box>
   )
