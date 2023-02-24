@@ -52,14 +52,14 @@ const CommentDetail = () => {
             </Grid>
           </Grid>
         </Grid>
-        {/* <Grid container>
-          { data.comment.replies.map((reply: Reply) => {
-            return (
-              <h3>{ reply.content }</h3>
-            )
-          })}
-        </Grid> */}
       </Paper>
+      <Grid container>
+        { data.comment.replies.map((reply: Reply) => {
+          return (
+            <div>{ reply.content }</div>
+          )
+        })}
+      </Grid>
     </Box>
   )
 }
