@@ -1,4 +1,4 @@
-import { Reply } from "./Reply"
+import { ReplyType } from "./ReplyType"
 
 export interface Comment {
   id: string
@@ -6,5 +6,5 @@ export interface Comment {
   uid: string
   content: string
   createdAt: string
-  replies: Reply[]
+  replies: ReplyType[]
 }

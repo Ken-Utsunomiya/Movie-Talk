@@ -1,16 +1,25 @@
 import { useQuery } from '@apollo/client'
 import { Grid, Paper, Typography, Box } from '@mui/material'
-import React from 'react'
+import { onAuthStateChanged } from 'firebase/auth'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Reply } from '../../interfaces/Reply'
+import auth from '../../auth/firebase'
 
 import FETCH_COMMENT from '../../queries/fetchComment'
+import ReplyList from '../Reply/ReplyList'
 
 const CommentDetail = () => {
   const { commentId } = useParams()
   const { data, loading, error } = useQuery(FETCH_COMMENT, {
     variables: { id: commentId }
   })
+  const [uid, setUid] = useState("")
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) { setUid(user.uid) }
+    })
+  }, [])
 
   if (loading) {
     return <div>Loading ...</div>
@@ -53,13 +62,7 @@ const CommentDetail = () => {
           </Grid>
         </Grid>
       </Paper>
-      <Grid container>
-        { data.comment.replies.map((reply: Reply) => {
-          return (
-            <div>{ reply.content }</div>
-          )
-        })}
-      </Grid>
+      <ReplyList replies={data.comment.replies}  uid={uid}/>
     </Box>
   )
 }

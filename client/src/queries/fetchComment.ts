@@ -10,6 +10,7 @@ const FETCH_COMMENT = gql`
       content
       replies {
         id
+        uid
         content
         createdAt
       }
