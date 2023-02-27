@@ -5,9 +5,9 @@ import EditIcon from '@mui/icons-material/Edit'
 
 import { ReplyType } from '../../interfaces/ReplyType'
 
-const ReplyDetail = ({ reply, uid}: { reply: ReplyType, uid: String }) => {
+const ReplyDetail = ({ reply, uid }: { reply: ReplyType, uid: String }) => {
   return (
-    <Box sx={{ borderColor: "red", border: "2px solid grey"}}>
+    <Box sx={{ borderColor: "red", border: "2px solid grey" }}>
       <Paper
         sx={{
           p: 2,
