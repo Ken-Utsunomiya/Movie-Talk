@@ -62,7 +62,7 @@ const CommentDetail = () => {
           </Grid>
         </Grid>
       </Paper>
-      <ReplyList replies={data.comment.replies}  uid={uid}/>
+      <ReplyList commentId={data.comment.id} replies={data.comment.replies}  uid={uid}/>
     </Box>
   )
 }
