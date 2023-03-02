@@ -7,7 +7,7 @@ import ReplyDetail from './ReplyDetail'
 import FETCH_COMMENT from '../../queries/fetchComment'
 import ADD_REPLY from '../../queries/addReply'
 
-const ReplyList = ({ commentId, replies, uid }: { commentId: string, replies: ReplyType[], uid: String }) => {
+const ReplyList = ({ commentId, replies, uid }: { commentId: String, replies: ReplyType[], uid: String }) => {
   const [replying, setReplying] = useState(false)
   const [replyingContent, setReplyingContent] = useState("")
   const [addReplyToComment, { error }] = useMutation(ADD_REPLY)
@@ -17,11 +17,12 @@ const ReplyList = ({ commentId, replies, uid }: { commentId: string, replies: Re
     addReplyToComment({
       variables: {
         id: commentId,
+        uid: uid,
         content: replyingContent
       },
       refetchQueries: [{
         query: FETCH_COMMENT,
-        variables: { commentId }
+        variables: { id: commentId }
       }]
     })
     .catch(({ message }: { message: string }) => alert(message))
@@ -42,23 +43,21 @@ const ReplyList = ({ commentId, replies, uid }: { commentId: string, replies: Re
         <Button variant="contained" onClick={() => setReplying(!replying)}>Reply</Button> : 
         <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
             width: '100%'
           }}
         >
           <Box 
             component="form" 
             noValidate 
-            sx={{ mt: 1, width: '70%', display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+            sx={{ mt: 1, width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column' }}
             onSubmit={onSubmit}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="comment-content"
+              id="reply-content"
               label="Content"
               name="content"
               multiline
@@ -68,7 +67,6 @@ const ReplyList = ({ commentId, replies, uid }: { commentId: string, replies: Re
             <Button
               type="submit"
               variant="contained"
-              sx={{ mt: 7, mb: 2, width: '50%' }}
             >
               Submit
             </Button>
