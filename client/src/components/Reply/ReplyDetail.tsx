@@ -3,9 +3,27 @@ import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
+import DELETE_REPLY from '../../queries/deleteReply'
 import { ReplyType } from '../../interfaces/ReplyType'
+import { useMutation } from '@apollo/client'
+import FETCH_COMMENT from '../../queries/fetchComment'
 
-const ReplyDetail = ({ reply, uid }: { reply: ReplyType, uid: String }) => {
+const ReplyDetail = ({ reply, commentId, uid }: { commentId: String, reply: ReplyType, uid: String }) => {
+  const [deleteReply, { error }] = useMutation(DELETE_REPLY)
+
+  const onDeleteClick = (id: String) => {
+    deleteReply({
+      variables: { id },
+      refetchQueries: [{
+        query: FETCH_COMMENT,
+        variables: { id: commentId }
+      }]
+    })
+    .catch(({ message }: { message: string }) => alert(message))
+  }
+
+  if (error) { return <div>error</div> }
+
   return (
     <Box sx={{ borderColor: "red", border: "2px solid grey" }}>
       <Paper
@@ -39,7 +57,8 @@ const ReplyDetail = ({ reply, uid }: { reply: ReplyType, uid: String }) => {
           { uid === reply.uid ? 
             <IconButton
               edge="end"
-              aria-label="delete">
+              aria-label="delete"
+              onClick={() => onDeleteClick(reply.id)}>
               <DeleteIcon />
             </IconButton> : <div />
           }

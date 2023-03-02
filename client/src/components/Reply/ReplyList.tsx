@@ -35,7 +35,7 @@ const ReplyList = ({ commentId, replies, uid }: { commentId: String, replies: Re
       <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
         { replies.map((reply: ReplyType) => {
           return (
-            <ReplyDetail reply={reply} uid={uid}/>
+            <ReplyDetail reply={reply} commentId={commentId} uid={uid}/>
           )
         })}
       </List>
