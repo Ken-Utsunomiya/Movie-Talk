@@ -1,5 +1,5 @@
-import { Box, Paper, Grid, Typography, IconButton } from '@mui/material'
-import React from 'react'
+import { Box, Paper, Grid, Typography, IconButton, Button, TextField } from '@mui/material'
+import React, { useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
@@ -9,7 +9,12 @@ import { useMutation } from '@apollo/client'
 import FETCH_COMMENT from '../../queries/fetchComment'
 
 const ReplyDetail = ({ reply, commentId, uid }: { commentId: String, reply: ReplyType, uid: String }) => {
+  const [editing, setEditing] = useState(false)
   const [deleteReply, { error }] = useMutation(DELETE_REPLY)
+
+  const onEditClick = () => {
+    setEditing(!editing)
+  }
 
   const onDeleteClick = (id: String) => {
     deleteReply({
@@ -50,10 +55,41 @@ const ReplyDetail = ({ reply, commentId, uid }: { commentId: String, reply: Repl
               </Grid>
             </Grid>
           </Grid>
-          <IconButton
-            aria-label="edit">
+          { editing?
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%'
+              }}
+            >
+              <Box 
+                component="form" 
+                noValidate 
+                sx={{ mt: 1, width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column' }}
+                onSubmit={onSubmit}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="reply-content"
+                  label="Content"
+                  name="content"
+                  multiline
+                  rows={10}
+                />
+                <Button
+                  type="submit"
+                  variant="contained"
+                >
+                  Submit
+                </Button>
+              </Box>
+            </Box> :
+            <IconButton aria-label="edit">
               <EditIcon />
             </IconButton>
+          }
           { uid === reply.uid ? 
             <IconButton
               edge="end"
